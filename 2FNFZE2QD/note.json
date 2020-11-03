@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "//Test",
+      "text": "////Test",
       "user": "admin",
-      "dateUpdated": "2020-11-03 19:54:02.683",
+      "dateUpdated": "2020-11-03 20:00:16.524",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -22,21 +22,16 @@
         "forms": {}
       },
       "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "\u003cconsole\u003e:24: error: not found: value Test\n       Test\n       ^\n"
-          }
-        ]
+        "code": "SUCCESS",
+        "msg": []
       },
       "apps": [],
       "jobName": "paragraph_1604431425822_906807841",
       "id": "20201103-192345_1139032647",
       "dateCreated": "2020-11-03 19:23:45.823",
-      "dateStarted": "2020-11-03 19:43:40.857",
-      "dateFinished": "2020-11-03 19:45:58.327",
-      "status": "ERROR",
+      "dateStarted": "2020-11-03 19:54:02.705",
+      "dateFinished": "2020-11-03 19:55:20.947",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
