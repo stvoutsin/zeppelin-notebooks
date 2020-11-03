@@ -1,45 +1,6 @@
 {
   "paragraphs": [
     {
-      "text": "# \n#   Follows Gaia EDR3 science demonstration paper DPACP-81 (Smart et al.) in classifying astrometric solutions as good or bad\n#   via supervised ML. Employs a Random Forrest classifier plus appropriately defined training sets - see\n#\n#   https://gaia.esac.esa.int/dpacsvn/DPAC/docs/DpacPublications/DR3PerformanceVerification/DPACP-81/main_submitted2308.pdf\n#\n#   (DPAC password protected) for further details. The work flow implemented here follows closely that described in Section 2, \"GCNS Generation\"\n#   (GCNS \u003d Gaia Catalogue of Nearby Stars) and is designed to clean up a 100pc (\u003d nearby) sample.\n#\n#   Presently implemented for Gaia DR2; deploy and check against GEDR3 when released.\n#",
-      "user": "gaiauser",
-      "dateUpdated": "2020-10-16 09:35:38.837",
-      "config": {
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9.0,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "\u003cconsole\u003e:1: error: illegal start of definition\n#\n^\n\u003cconsole\u003e:8: error: Invalid literal number\n#   (GCNS \u003d Gaia Catalogue of Nearby Stars) and is designed to clean up a 100pc (\u003d nearby) sample.\n                                                                          ^\n\u003cconsole\u003e:11: error: identifier expected but \u0027#\u0027 found.\n#\n^\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1602600177106_-1556858460",
-      "id": "20201013-131059_546082898",
-      "dateCreated": "2020-10-13 14:42:57.106",
-      "dateStarted": "2020-10-16 09:35:38.861",
-      "dateFinished": "2020-10-16 09:35:38.876",
-      "status": "ERROR",
-      "progressUpdateIntervalMs": 500
-    },
-    {
       "text": "%spark.pyspark\n\n# define the data source\ngs_df \u003d sqlContext.read.parquet(\"/data/gaia/*.parquet\")\n\n# register as SQL-queryable \ngs_df.createOrReplaceTempView(\"gaia_source\")\n",
       "user": "gaiauser",
       "dateUpdated": "2020-10-16 09:35:41.796",
