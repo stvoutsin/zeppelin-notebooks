@@ -1,0 +1,187 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\nimport random \nNUM_SAMPLES \u003d 200000\n\ndef inside(p):\n    x, y \u003d random.random(), random.random()\n    return x*x + y*y \u003c 1\n\ncount \u003d sc.parallelize(range(0, NUM_SAMPLES)) \\\n             .filter(inside).count()\n             \nprint (\"Pi is roughly %f\" % (4.0 * count / NUM_SAMPLES))",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-19 18:32:16.111",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Pi is roughly 3.139000\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1603115048079_562784487",
+      "id": "20201019-134408_179956655",
+      "dateCreated": "2020-10-19 13:44:08.079",
+      "dateStarted": "2020-10-19 18:32:16.181",
+      "dateFinished": "2020-10-19 18:32:58.978",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n\n%spark.master            yarn\n%spark.driver.memory     13g\n%spark.yarn.am.memory    13g\n%spark.executor.memory   13g\n%spark.eventLog.enabled  true",
+      "user": "admin",
+      "dateUpdated": "2020-10-19 16:07:15.282",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cconsole\u003e:1: error: \u0027;\u0027 expected but \u0027.\u0027 found.\n%spark.master            yarn\n      ^\n\u003cconsole\u003e:2: error: \u0027;\u0027 expected but \u0027.\u0027 found.\n%spark.driver.memory     13g\n      ^\n\u003cconsole\u003e:2: error: Invalid literal number\n%spark.driver.memory     13g\n                         ^\n\u003cconsole\u003e:3: error: \u0027;\u0027 expected but \u0027.\u0027 found.\n%spark.yarn.am.memory    13g\n      ^\n\u003cconsole\u003e:3: error: Invalid literal number\n%spark.yarn.am.memory    13g\n                         ^\n\u003cconsole\u003e:4: error: \u0027;\u0027 expected but \u0027.\u0027 found.\n%spark.executor.memory   13g\n      ^\n\u003cconsole\u003e:4: error: Invalid literal number\n%spark.executor.memory   13g\n                         ^\n\u003cconsole\u003e:5: error: \u0027;\u0027 expected but \u0027.\u0027 found.\n%spark.eventLog.enabled  true\n      ^\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1603115051892_-950647691",
+      "id": "20201019-134411_997428798",
+      "dateCreated": "2020-10-19 13:44:11.893",
+      "dateStarted": "2020-10-19 16:07:15.300",
+      "dateFinished": "2020-10-19 16:07:15.323",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nconf\nconf.set(\u0027spark.executor.instances\u0027, 5)\nconf.set(\u0027spark.dynamicAllocation.enabled\u0027, True)\n\nconf.set(\u0027spark.driver.memory\u0027,              15)\nconf.set(\u0027spark.yarn.am.memory\u0027,            15)\nconf.set(\u0027spark.executor.memory\u0027,        15)\nconf.set(\u0027spark.eventLog.enabled \u0027, True)\n",
+      "user": "admin",
+      "dateUpdated": "2020-10-19 17:41:34.940",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u003cpyspark.conf.SparkConf at 0x7fd368042d90\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1603115184963_-704815917",
+      "id": "20201019-134624_973556501",
+      "dateCreated": "2020-10-19 13:46:24.963",
+      "dateStarted": "2020-10-19 17:41:34.952",
+      "dateFinished": "2020-10-19 17:41:35.007",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nimport random \nNUM_SAMPLES \u003d 200000\n\ndef inside(p):\n    x, y \u003d random.random(), random.random()\n    return x*x + y*y \u003c 1\n\ncount \u003d sc.parallelize(range(0, NUM_SAMPLES)) \\\n             .filter(inside).count()\n             \nprint (\"Pi is roughly %f\" % (4.0 * count / NUM_SAMPLES))",
+      "user": "admin",
+      "dateUpdated": "2020-10-19 17:41:35.952",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Pi is roughly 3.139920\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1603128559533_-534614263",
+      "id": "20201019-172919_1384780028",
+      "dateCreated": "2020-10-19 17:29:19.533",
+      "dateStarted": "2020-10-19 17:41:35.963",
+      "dateFinished": "2020-10-19 17:41:36.162",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "user": "admin",
+      "dateUpdated": "2020-10-19 17:31:16.042",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1603128676041_1251709037",
+      "id": "20201019-173116_16178853",
+      "dateCreated": "2020-10-19 17:31:16.041",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "~Trash/Untitled Note 3",
+  "id": "2FN4QKGU2",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

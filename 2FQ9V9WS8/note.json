@@ -1,0 +1,121 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\nimport random \nNUM_SAMPLES \u003d 20000\n\ndef inside(p):\n    x, y \u003d random.random(), random.random()\n    return x*x + y*y \u003c 1\n\ncount \u003d sc.parallelize(range(0, NUM_SAMPLES)) \\\n             .filter(inside).count()\nprint (\"Pi is roughly %f\" % (4.0 * count / NUM_SAMPLES))",
+      "user": "admin",
+      "dateUpdated": "2020-10-28 17:32:33.001",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Pi is roughly 3.138200\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602605281840_-841324578",
+      "id": "20201013-160801_1950188824",
+      "dateCreated": "2020-10-13 16:08:01.840",
+      "dateStarted": "2020-10-28 17:32:33.015",
+      "dateFinished": "2020-10-28 17:32:33.748",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nx\u003d1\nz.put(\"x\",x)",
+      "user": "admin",
+      "dateUpdated": "2020-10-13 16:14:39.006",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31mAttributeError\u001b[0m                            Traceback (most recent call last)\n\u001b[0;32m\u003cipython-input-38-0685c8f432ea\u003e\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[1;32m      1\u001b[0m \u001b[0mx\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0;36m1\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m----\u003e 2\u001b[0;31m \u001b[0mz\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mput\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m\"x\"\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0mx\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\n\u001b[0;31mAttributeError\u001b[0m: \u0027IPySparkZeppelinContext\u0027 object has no attribute \u0027put\u0027"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602605288930_-1153663047",
+      "id": "20201013-160808_386658379",
+      "dateCreated": "2020-10-13 16:08:08.931",
+      "dateStarted": "2020-10-13 16:14:39.013",
+      "dateFinished": "2020-10-13 16:14:39.061",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nz",
+      "user": "admin",
+      "dateUpdated": "2020-10-13 16:11:52.276",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1602605298932_1622154514",
+      "id": "20201013-160818_689959541",
+      "dateCreated": "2020-10-13 16:08:18.933",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "~Trash/Untitled Note 1",
+  "id": "2FQ9V9WS8",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}

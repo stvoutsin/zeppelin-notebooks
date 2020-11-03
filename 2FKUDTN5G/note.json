@@ -1,0 +1,414 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\n\n# define the data frame source on the given column selection/predicates:\ndf \u003d sqlContext.read.parquet(\n    \"/data/gaia/*.parquet\"\n    ).select(\n    [\"designation\",\"source_id\",\"ra\",\"ra_error\",\"dec\",\"dec_error\",\"parallax\",\"parallax_error\",\"parallax_over_error\",\"pmra\",\"pmra_error\",\"pmdec\",\"pmdec_error\",\"l\",\"b\"]\n    ).where(\n    \"abs(b) \u003c 30.0 AND parallax \u003e 1.0 and parallax_over_error \u003e 10.0 AND phot_g_mean_flux_over_error \u003e 36.19 AND astrometric_sigma5d_max \u003c 0.3 AND visibility_periods_used \u003e 8 AND (astrometric_excess_noise \u003c 1 OR (astrometric_excess_noise \u003e 1 AND astrometric_excess_noise_sig \u003c 2))\"\n    )\n\n# sanity check\ndf.show()\nprint (\"Data frame rows: \",df.count())",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-28 18:11:45.594",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+--------------------+-------------------+------------------+--------------------+-------------------+--------------------+------------------+--------------------+-------------------+--------------------+--------------------+-------------------+--------------------+------------------+-------------------+\n|         designation|          source_id|                ra|            ra_error|                dec|           dec_error|          parallax|      parallax_error|parallax_over_error|                pmra|          pmra_error|              pmdec|         pmdec_error|                 l|                  b|\n+--------------------+-------------------+------------------+--------------------+-------------------+--------------------+------------------+--------------------+-------------------+--------------------+--------------------+-------------------+--------------------+------------------+-------------------+\n|Gaia DR2 40396662...|4039666296672658688|272.42180060744215|0.040014912399424604|  -33.6058067001021| 0.03368056050988915| 1.422454370334301| 0.03639988616495275|           39.07854| -0.2316953688797376| 0.07537877095615261| -5.442599071096166| 0.05727019630225524|358.50569414878646|-6.7818037118031835|\n|Gaia DR2 40396673...|4039667327461865216|272.65050482164776|0.036197874417770184| -33.67244054531187| 0.03680133647540661|1.1673137239965692| 0.05314058363370944|           21.96652| -1.7009801509860536| 0.07029452441830816| -4.612361250689048| 0.06085092511704771|358.53690441856696| -6.981138715828702|\n|Gaia DR2 40396638...|4039663822768546432| 272.3987836204827|0.027632276638390182|-33.677978944324124|0.024215370325550427| 1.485547221111856|0.028698903012696158|          51.763206|  -4.537954548081503|0.053742838174843835|-15.585752841174445|0.041699306844425514| 358.4325162212831| -6.799004597798456|\n|Gaia DR2 40396743...|4039674302495016832| 272.6370332645537|0.049971393914832546| -33.46345401655811| 0.04311907194434805|1.4895944391179747| 0.05535383094438027|          26.910412|  -8.999004938426811| 0.08901429663519801|-20.520372339141726| 0.07278953875661565| 358.7173313727555| -6.872875125255238|\n|Gaia DR2 40396798...|4039679804475284224| 272.3352958925287|  0.0382698356897684| -33.49684273645387|   0.037562716485539|1.8288406168863958|0.049118014784077936|            37.2336|  -8.709127050643408| 0.07206191453025368| 0.8317008127357967| 0.05431303815619029|  358.568061282215|  -6.66676412739173|\n|Gaia DR2 40396768...|4039676845112356736| 272.3423038848421| 0.04004613278050688| -33.60277422977108| 0.03534959354180454| 1.331757953116398|0.040852709757309896|           32.59901| -3.0736631636887344| 0.07887016066616566|-10.535097449648152| 0.06167703651701124|358.47687324908384| -6.722021120385618|\n|Gaia DR2 40396799...|4039679976215199616| 272.3870770186676| 0.08175560039135911| -33.49054936039203|   0.075806277430834|1.6828015366409843| 0.09616438158987135|          17.499218|  0.9078068372385885|    0.15609879018991|-1.2743414940340876| 0.12356941230805032| 358.5942080511929|  -6.70183491892182|\n|Gaia DR2 40396779...|4039677948992976896| 272.2946282491588| 0.12673632257759757|-33.562874682533035| 0.11352057025821762|1.2791078599019605| 0.12717607561652478|          10.057771|  2.4788330269377497|  0.2613657929145823| -4.650451848991806| 0.20943502287503454| 358.4933431825897| -6.668151666197993|\n|Gaia DR2 40396646...|4039664686186893184| 272.4026652887885|0.028595834471134035|-33.655006326453886| 0.02471972176840793|1.4230023257454893|0.029119862707883994|           48.86707|  -4.179903049739455|0.055444952571015844| 2.2287270254996123|  0.0428403985184529| 358.4544442439153| -6.791000148338951|\n|Gaia DR2 40396753...|4039675333287149952|  272.560428244972| 0.14485939823543023| -33.41907979107032| 0.13639184748166955|2.4892891798856938| 0.14768574894726139|           16.85531|   2.753665468378671|  0.2764468222685262| -6.187195733058044|  0.2210087660210865|358.72641382590615| -6.795584005240619|\n|Gaia DR2 40396696...|4039669629564951040| 272.7381011527819|0.054428306834246126| -33.56432279582611| 0.04383693249181095|1.4039064198829385| 0.06633427846464744|          21.164116|   3.411131784353724| 0.09135111973361876| -9.646276318124418| 0.08216672365634985| 358.6675940515556| -6.994684164951169|\n|Gaia DR2 40396626...|4039662693254567936| 272.5126080410794|  0.1296423098745303| -33.65215003086476| 0.10917065938921705|1.2421645377888288|  0.1122515594329213|            11.0659|    7.70196276687754| 0.25578905728633683|-17.583724821676032| 0.20088518616997741| 358.5004815041314| -6.870335004176007|\n|Gaia DR2 40396725...|4039672520147052672|272.57023824221136|  0.0736686882516885| -33.51129861096017| 0.06447426562797175| 1.186762299958647| 0.08862786004612552|          13.390398|   2.632117122829801| 0.13686967280780654| 0.3072041918179895|  0.1083246074218071|358.64839146395377| -6.846275843225122|\n|Gaia DR2 40396727...|4039672721944070272| 272.5831112426574| 0.07043976875751465|-33.483537099952784| 0.06291530701296215|  1.14022685446635| 0.08033686117429235|          14.193072|  0.5481922043982299|   0.129302666462865|-3.2025426136016226| 0.10287713081563385|358.67814785261555|-6.8426601585483455|\n|Gaia DR2 40396731...|4039673134263578112|272.47253543660037|0.041702049821903266| -33.51891353312088| 0.03645176703075055|1.1267320071311797|0.047071092260350056|          23.936815|  -1.641507160720163| 0.07769872412607842| -4.671616157042623| 0.06032524035452944| 358.6029327525877| -6.778040244101522|\n|Gaia DR2 40396646...|4039664686186892160|272.40377537872985| 0.04377600533015369| -33.65486867142623|0.037860082819238965|  1.75887165621122|  0.0445294022348985|          39.499107| -0.9566730190113414| 0.08496727540942774| -3.746117897740997|   0.066416625862686|358.45500600935554|  -6.79174955438742|\n|Gaia DR2 40396815...|4039681591181083520| 272.1513758092714| 0.03374330430351806| -33.54770223115408| 0.03215174942793003|1.2770089043898252| 0.03768576974690001|          33.885704| -14.528880635531543| 0.06242652192511705|-1.5617009216815694| 0.05084214045259791|  358.449834180826| -6.555840447573484|\n|Gaia DR2 40396683...|4039668396976095232| 272.5918785069274| 0.06755164731288285| -33.62795490984999|0.060064042374027175| 1.278165908009941| 0.08163770487003097|          15.656564|  -9.059932437739432| 0.12441941818286029| 1.0153309974276419| 0.10066735403770635|358.55330353126215| -6.917141240695328|\n|Gaia DR2 40396782...|4039678253864546816| 272.2796609111014| 0.12881518153071386| -33.51657315885373| 0.11029532166270983|1.1790261056103815| 0.11170275683028853|          10.555032|  -9.837527608593797|  0.2374980846729896| -4.101407578324116|  0.1907102657065912|358.52845560549713| -6.635240808816544|\n|Gaia DR2 40396815...|4039681591181086848| 272.1520450526198| 0.04506019510179999| -33.54255938796362| 0.04309540098315705|1.0121130032598475| 0.04860285626079909|          20.824146|-0.01420160186318746| 0.08474653494512939|-4.1072215733651944| 0.07023090482212226|358.45465735183967| -6.553891056963974|\n+--------------------+-------------------+------------------+--------------------+-------------------+--------------------+------------------+--------------------+-------------------+--------------------+--------------------+-------------------+--------------------+------------------+-------------------+\nonly showing top 20 rows\n\nData frame rows:  21901470\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682202_-1608649522",
+      "id": "20200527-131424_279716502",
+      "dateCreated": "2020-10-09 18:21:22.202",
+      "dateStarted": "2020-10-28 18:11:45.688",
+      "dateFinished": "2020-10-28 18:19:05.369",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\nfrom numpy import pi, cos, sin\nimport numpy as np\n\ndf.columns",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:13.749",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[\u0027designation\u0027,\n \u0027source_id\u0027,\n \u0027ra\u0027,\n \u0027ra_error\u0027,\n \u0027dec\u0027,\n \u0027dec_error\u0027,\n \u0027parallax\u0027,\n \u0027parallax_error\u0027,\n \u0027parallax_over_error\u0027,\n \u0027pmra\u0027,\n \u0027pmra_error\u0027,\n \u0027pmdec\u0027,\n \u0027pmdec_error\u0027,\n \u0027l\u0027,\n \u0027b\u0027]"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682203_1618507910",
+      "id": "20200527-131448_1345258690",
+      "dateCreated": "2020-10-09 18:21:22.203",
+      "dateStarted": "2020-10-13 13:40:13.805",
+      "dateFinished": "2020-10-13 13:40:13.865",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\n# Generic functions used later\n\ndef convDegRad(args, units\u003d\"degrees\"):\n    \u0027\u0027\u0027\n    NAME\n        convDegRad\n        \n    FUNCTION\n        args in km/sTransforms degrees to radians or returns radians if in radians\n        \n    INPUT\n         args - list of values to convert\n        units - [\u0027degrees\u0027, \u0027radians\u0027] Units of args\n    \n    OUTPUT\n    list of args in radians\n    \u0027\u0027\u0027\n\n    if units \u003d\u003d \u0027degrees\u0027:\n        args \u003d [i*pi/180 for i in args]\n\n    return args\n\ndef convMasKm(args, parallax, units\u003d \u0027mas/yr\u0027):\n    \u0027\u0027\u0027\n    NAME\n        convMasKm\n        \n    FUNCTION\n        Converts data from mas/yr to km/s\n        \n    INPUT\n            args - list of values to convert\n        parallax - parallax of argsmeasurements\n           units - [\u0027mas/yr\u0027, \u0027km/s\u0027] Units of args\n    \n    OUTPUT\n        list of args in km/s\n    \u0027\u0027\u0027\n    \n    if units \u003d\u003d \u0027mas/yr\u0027:\n        k \u003d 4.74057\n        args \u003d [i/parallax * 4.74057 for i in args]\n    elif units !\u003d \u0027km/s\u0027:\n        raise ValueError(\"Input proper motion values in either mas/yr or km/s\")\n        \n    return args\n\ndef matrix_multiplication_arrays(A,B):\n    \u0027\u0027\u0027NAME\n         matrix_multiplication_arrays\n        \n    FUNCTION\n        Matrix multiplication of Matrix A and B if both are either lists or numpy.arrays\n        \n    INPUT\n        A - Matrix A\n        B - Matrix B\n    \n    OUTPUT\n        MAtrix A*B, as an numpy.array\n    \u0027\u0027\u0027\n    \n    if np.shape(A)[1] !\u003d np.shape(B)[0]:\n        return \u0027Invalid matrix shape\u0027\n    else:\n        n,m \u003d np.shape(A)[0], np.shape(B)[1]\n        M \u003d np.zeros((n,m))\n        \n        for i in range(n):\n            for j in range(len(B[0])):\n                E\u003d0\n                for k in range(len(B)):\n#                     print(\u0027A{}{}*B{}{}\u0027.format(i,k,k,j))\n                    E +\u003d A[i][k]*B[k][j]\n                M[i,j] \u003d E\n#                 print(\u0027\\n\u0027)\n        return M\n        \n",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:17.497",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682203_612154209",
+      "id": "20200527-131600_314491974",
+      "dateCreated": "2020-10-09 18:21:22.203",
+      "dateStarted": "2020-10-13 13:40:17.545",
+      "dateFinished": "2020-10-13 13:40:17.582",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\n# Functions to perform the LSR cut\n\ndef create_Matrix_A(ra, dec, coord_units \u003d \u0027degrees\u0027):\n    \u0027\u0027\u0027creates Matrix A, where A \u003d [[cos(ra)*cos(dec), -sin(ra), -cos(ra)*sin(dec)],\n                                     [sin(ra)*cos(dec),  cos(ra), -sin(ra)*sin(dec)],\n                                     [sin(dec),             0,     cos(dec)]])\u0027\u0027\u0027\n    \n#     if all(v is None for v in {data, ra, dec}):\n#         raise ValueError(\"Expected input either as array or \u0027ra\u0027 and \u0027dec\u0027 values\")\n#     if data is None:\n#         if any(v is None for v in {ra,dec}):\n#             raise ValueError(\"Expected input either as array or \u0027ra\u0027 and \u0027dec\u0027 values\")\n\n    ra,dec \u003d convDegRad([ra,dec], units \u003d coord_units)  # Ensures radians\n        \n    A \u003d np.array([[cos(ra)*cos(dec), -sin(ra), -cos(ra)*sin(dec)],\n              [sin(ra)*cos(dec), cos(ra), -sin(ra)*sin(dec)],\n              [sin(dec), 0, cos(dec)]])\n    return A\n\ndef create_matrix_C(pmra, pmdec, parallax \u003d None, radial_velocity \u003d 0.0, units \u003d \u0027mas/yr\u0027):\n    \u0027\u0027\u0027creates Matrix C, where C \u003d [radial_velocity, pmra, pmdec]\u0027\u0027\u0027\n    \n    if parallax \u003d\u003d None and units \u003d\u003d \u0027mas/yr\u0027:\n        raise ValueError(\"Parallax value must be supplied if proper motion units are \u0027mas/yr\u0027\")\n\n    pmra,pmdec \u003d convMasKm([pmra, pmdec], parallax \u003d parallax, units \u003d units)  # Ensures proper motions in km/s\n    C \u003d np.array([[radial_velocity, pmra, pmdec]]).T\n    \n    \n    return C\n    \ndef conv_Galactic_LSR(G, magnitude \u003d True):\n    \u0027\u0027\u0027\n    NAME\n        conv_Galactic_LSR\n        \n    FUNCTION\n        Calculates magnitude of LSR velocity give U,V,W velocity.\n        \n    INPUT\n                G - Array of U, W, V velocity in Galactic reference frame\n        Magnitude - [True, False] Return velocity magnitude (True) or LSR components (False)\n    \n    OUTPUT\n        LSR velocity values\n    \n    SEE ALSO\n        v_sun values from Schonrich, R., Binney, J., \u0026 Dehnen, W. 2010 | \n        DOI: 10.1111/j.1365-2966.2010.16253.x\n    \u0027\u0027\u0027\n    v_sun \u003d [11.1, 12.24, 7.25]\n    lsr \u003d np.asarray(G).T + v_sun\n    \n    if magnitude \u003d\u003d True:\n        v_lsr \u003d np.sqrt(np.sum([i**2 for i in lsr]))\n        return v_lsr\n    return lsr\n    \ndef LSR_conv(ra, dec, parallax, pmra, pmdec, coord_units \u003d \u0027degrees\u0027, pm_units\u003d\u0027mas/yr\u0027, radial_velocity \u003d 0.0, magnitude \u003d True):\n    \u0027\u0027\u0027\n    NAME\n        LSR_conv\n        \n    FUNCTION\n        Converts proper motions from ra, dec to LSR velocity\n    \n    REQUIRES:\n              ra - right acension of object\n             dec - declination of object\n        parallax - parallax of object\n            pmra - right ascension component of proper motion\n           pmdec - declination component of proper motion\n        \n    OPTIONAL:\n            coord_units \u003d [defaut \u003d \u0027deg\u0027] units of coordinates (ra, dec). \n                                Accepted values are [\u0027deg\u0027, \u0027rad\u0027]\n               pm_units \u003d [defaut \u003d \u0027mas/yr\u0027] units of proper motions. \n                              Accepted values are: [\u0027mas/yr\u0027, \u0027km/s\u0027]\n        radial_velocity \u003d list of radial velocity (defaults \u003d 0.0)\n                    mag \u003d Return only V_LSR mag (default \u003d True - returns three dimensions of v_lsr [u,v,w])\n    \n    RETURNS\n        lsr velocity [float]\n    \n    SEE ALSO\n         Method from: Johnson, Dean R. H., Soderblom, David R. DOI: 10.1086/114370\n    \u0027\u0027\u0027\n    \n    T \u003d [[-0.05646624, -0.87325802, -0.48397519],\n         [ 0.49253617, -0.44602111,  0.74731071],\n         [-0.86845823, -0.19617746,  0.4552963 ]]\n\n    A \u003d create_Matrix_A(ra,dec, coord_units\u003dcoord_units)   # forms Marix A\n    B \u003d matrix_multiplication_arrays(T, A)  # forms Matrix B\n    \n    C \u003d create_matrix_C(pmra,pmdec,parallax, units \u003d pm_units, radial_velocity \u003d radial_velocity)    # forms Matrix C\n    G \u003d matrix_multiplication_arrays(B,C) # Calculates U, W, V\n\n    v_lsr \u003d conv_Galactic_LSR(G, magnitude \u003d magnitude) # Calculates velocity magnitude in LSR coords\n    \n    return v_lsr",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:21.970",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682203_926224784",
+      "id": "20200527-131651_2073984980",
+      "dateCreated": "2020-10-09 18:21:22.203",
+      "dateStarted": "2020-10-13 13:40:22.000",
+      "dateFinished": "2020-10-13 13:40:22.077",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\n# This function needs to be called by the UDF, all optional parameters are set as required - e.g. show_velocity \u003d False.\n\ndef LSR_cut(ra,dec,parallax,pmra,pmdec, \n            cut \u003d 60, coord_units \u003d \u0027degrees\u0027, \n            pm_units\u003d\u0027mas/yr\u0027, show_velocity \u003d False):\n    \u0027\u0027\u0027\n    NAME\n        LSR_cut\n        \n    FUNCTION\n        Calculates LSR velocity through LSR_conv and returns boolean if satisfies cut condition.\n    \n    REQUIRES:\n              ra - right acension of object\n             dec - declination of object\n        parallax - parallax of object\n            pmra - right ascension component of proper motion\n           pmdec - declination component of proper motion\n    \n    OPTIONAL\n          coord_units \u003d [defaut \u003d \u0027deg\u0027] units of coordinates (ra, dec). \n                             Accepted values are [\u0027deg\u0027, \u0027rad\u0027]\n             pm_units \u003d [defaut \u003d \u0027mas/yr\u0027] units of proper motions. \n                            Accepted values are: [\u0027mas/yr\u0027, \u0027km/s\u0027]\n        show_velocity \u003d [default \u003d False] print lsr velocity? [True/False]\n    \n    RETURNS\n        [Boolean]\n    \u0027\u0027\u0027\n    \n    v \u003d LSR_conv(ra,dec,parallax,pmra,pmdec, coord_units\u003dcoord_units, pm_units\u003dpm_units)\n    if show_velocity \u003d\u003d True:\n        print(v)\n    if v \u003c cut:\n        return 1\n    if v \u003e cut:\n        return 0\n        \n        \n# EXAMPLE\n        \nra,dec,parallax,pmra,pmdec \u003d 57.25900743047902,14.667417479835972,1.9984319162609905,-2.1574156360679533, -9.231775664473664\nLSR_cut(ra, dec, parallax, pmra, pmdec, cut \u003d 60, show_velocity \u003d True)",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:26.188",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "21.34521829551358\n1"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682204_-1459975273",
+      "id": "20200527-131951_1295526984",
+      "dateCreated": "2020-10-09 18:21:22.204",
+      "dateStarted": "2020-10-13 13:40:26.219",
+      "dateFinished": "2020-10-13 13:40:26.277",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\nfrom pyspark.sql.types import IntegerType\nspark.udf.register(\"udf_lsr_cut\", LSR_cut, IntegerType())\ndf_lsr_cut \u003d df.select(\"*\").where(\"udf_lsr_cut(ra, dec, parallax, pmra, pmdec) \u003d 1\")\n",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:29.356",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682204_1130496824",
+      "id": "20200527-132100_1979599614",
+      "dateCreated": "2020-10-09 18:21:22.204",
+      "dateStarted": "2020-10-13 13:40:29.380",
+      "dateFinished": "2020-10-13 13:40:29.477",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\ndf_lsr_cut.columns\n",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:30.726",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "[\u0027designation\u0027,\n \u0027source_id\u0027,\n \u0027ra\u0027,\n \u0027ra_error\u0027,\n \u0027dec\u0027,\n \u0027dec_error\u0027,\n \u0027parallax\u0027,\n \u0027parallax_error\u0027,\n \u0027parallax_over_error\u0027,\n \u0027pmra\u0027,\n \u0027pmra_error\u0027,\n \u0027pmdec\u0027,\n \u0027pmdec_error\u0027,\n \u0027l\u0027,\n \u0027b\u0027]"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682204_2120577328",
+      "id": "20200605-164933_241111883",
+      "dateCreated": "2020-10-09 18:21:22.204",
+      "dateStarted": "2020-10-13 13:40:30.748",
+      "dateFinished": "2020-10-13 13:40:30.791",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n# Convert to Pandas (will be interesting to see if there are any differences with Pandas and Koalas for performance)\n\ncols\u003d[\u0027l\u0027, \u0027b\u0027, \u0027parallax\u0027,\u0027pmra\u0027,\u0027pmdec\u0027]\n\ndef convert_dataframe(df, cols, package \u003d \u0027pandas\u0027):\n    \u0027\u0027\u0027converts pyspark dataframe to pandas or koalas\u0027\u0027\u0027\n    \n    if package \u003d\u003d \u0027pandas\u0027:\n        # Pandas version\n        import pandas as pd\n        pdf \u003d df_lsr_cut.select(cols).toPandas()\n        return pdf\n        \n    if package \u003d\u003d \u0027koalas\u0027:\n         # Koalas version\n        import koalas as ks\n        kdf \u003d df_lsr_cut.select(cols).to_koalas()\n        return kdf\n\ndf_HDBSCAN \u003d convert_dataframe(df_lsr_cut, cols, package \u003d \u0027pandas\u0027)",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 13:40:33.373",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682204_907550255",
+      "id": "20200709-153147_80241281",
+      "dateCreated": "2020-10-09 18:21:22.204",
+      "dateStarted": "2020-10-13 13:40:33.399",
+      "dateFinished": "2020-10-13 14:07:08.850",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\n\nimport hdbscan\n\ndef clustering_info(clusterer, add_to_data\u003dFalse, df\u003d[], index\u003d-1):\n    \u0027\u0027\u0027\n    REQUIRED\n        clusterer \u003d output clusterer from HDBSCAN.\n        \n    OPTIONAL\n        add_to_data \u003d [boolean] Add results to df or return as arrays.\n        df \u003d [Required if add_to_data \u003d True] DataFrame to add results.\n        index \u003d [Default \u003d -1] Column location to add results.\n        \n    RETURNS\n        *groups \u003d Cluster labels for each point in the dataset given to fit(). \n                   Noisy samples are given the label -1.\n        *prob \u003d The strength with which each sample is a member of its assigned cluster.\n        *persistence \u003d A score of how persistent each cluster is. \n                       A score of 1.0 represents a perfectly stable cluster. \n    \n        if add_to_data \u003d False, returns [groups, prob, persistence] as seperate arrays.\n        if add_to_data \u003d True - returns df(DataFrame), persistence (array) - Must provide df to add.\n        \n        (*From HDBSCAN - in SEE ALSO)\n        \n    SEE ALSO\n        https://hdbscan.readthedocs.io/en/latest/\n    \u0027\u0027\u0027\n    # probabilities and group for each object\n    prob\u003dclusterer.probabilities_\n    groups\u003dclusterer.labels_\n\n    # Info on persistence of groups\n    persistence\u003dclusterer.cluster_persistence_\n    \n    print(\u0027Number of Groups \u003d \u0027, max(groups)+1) \n    if add_to_data \u003d\u003d False:\n        return groups, prob, persistence\n    \n    if add_to_data \u003d\u003d True:\n        df\u003dinsert_to_df(df, \u0027group\u0027, groups, index\u003dindex)\n        df\u003dinsert_to_df(df,\u0027probability\u0027, prob, index\u003dindex)\n        return df, persistence\n    \ndef clustering_prediction(clusterer, points_to_predict, cols, add_to_data\u003dFalse, index\u003d-1):\n    \u0027\u0027\u0027\n    REQUIRED\n        clusterer \u003d output clusterer from HDBSCAN.\n        points_to_predict \u003d DataFrame of objects to predict relationships to clustered data.\n        cols \u003d list of columns used for clustering.\n    \n    OPTIONAL\n        add_to_data \u003d [boolean] Add results to points_to_predict or return as arrays.\n        index \u003d [Default \u003d -1] Column location to add results.\n        \n    RETURNS\n        *group \u003d The predicted labels of the points_to_predict\n        *prob \u003d The soft cluster scores for each of the points_to_predict\n        \n        if add_to_data\u003dFalse, returns [group, prob] as seperate arrays.\n        if add_to_data\u003dTrue - returns df(DataFrame) with group and prob added.\n        \n        (*From HDBSCAN - in SEE ALSO)\n        \n    SEE ALSO\n        https://hdbscan.readthedocs.io/en/latest/\n    \u0027\u0027\u0027\n    \n    groups, prob \u003d hdbscan.approximate_predict(clusterer, points_to_predict[cols])\n    if add_to_data \u003d\u003d False:\n        return groups, prob\n    \n    if add_to_data \u003d\u003d True:\n        points_to_predict\u003dinsert_to_df(points_to_predict, \u0027group\u0027, groups, index\u003dindex)\n        points_to_predict\u003dinsert_to_df(points_to_predict,\u0027probability\u0027, prob, index\u003dindex)\n        return points_to_predict\n        \n     \n        \n# Apply HDBSCAN for full data with prediction ON.\n\nclusterer \u003d hdbscan.HDBSCAN(min_cluster_size\u003d40, \n                            min_samples\u003d25,\n                            prediction_data\u003dTrue, \n                            allow_single_cluster\u003dFalse,\n#                             memory\u003d\u0027data/leaf_cache/\u0027,\n                            cluster_selection_method\u003d\u0027leaf\u0027,\n                            gen_min_span_tree\u003dTrue).fit(df_HDBSCAN)\n\n",
+      "user": "admin",
+      "dateUpdated": "2020-10-12 21:16:38.710",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "\u001b[0;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[0;31m_RemoteTraceback\u001b[0m                          Traceback (most recent call last)\n\u001b[0;31m_RemoteTraceback\u001b[0m: \n\"\"\"\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py\", line 431, in _process_worker\n    r \u003d call_item()\n  File \"/usr/local/lib/python3.7/site-packages/joblib/externals/loky/process_executor.py\", line 285, in __call__\n    return self.fn(*self.args, **self.kwargs)\n  File \"/usr/local/lib/python3.7/site-packages/joblib/_parallel_backends.py\", line 595, in __call__\n    return self.func(*args, **kwargs)\n  File \"/usr/local/lib/python3.7/site-packages/joblib/parallel.py\", line 263, in __call__\n    for func, args, kwargs in self.items]\n  File \"/usr/local/lib/python3.7/site-packages/joblib/parallel.py\", line 263, in \u003clistcomp\u003e\n    for func, args, kwargs in self.items]\n  File \"hdbscan/_hdbscan_boruvka.pyx\", line 229, in hdbscan._hdbscan_boruvka._core_dist_query\n  File \"sklearn/neighbors/_binary_tree.pxi\", line 1367, in sklearn.neighbors._kd_tree.BinaryTree.query\n  File \"sklearn/neighbors/_binary_tree.pxi\", line 2073, in sklearn.neighbors._kd_tree.BinaryTree._query_dual_breadthfirst\n  File \"sklearn/neighbors/_binary_tree.pxi\", line 911, in sklearn.neighbors._kd_tree.NodeHeap.push\n  File \"sklearn/neighbors/_binary_tree.pxi\", line 887, in sklearn.neighbors._kd_tree.NodeHeap.resize\nMemoryError: Unable to allocate 1.34 GiB for an array with shape (59826302,) and data type [(\u0027val\u0027, \u0027\u003cf8\u0027), (\u0027i1\u0027, \u0027\u003ci8\u0027), (\u0027i2\u0027, \u0027\u003ci8\u0027)]\n\"\"\"\n\nThe above exception was the direct cause of the following exception:\n\n\u001b[0;31mMemoryError\u001b[0m                               Traceback (most recent call last)\n\u001b[0;32m\u003cipython-input-26-25905647c0ce\u003e\u001b[0m in \u001b[0;36m\u003cmodule\u003e\u001b[0;34m\u001b[0m\n\u001b[1;32m     85\u001b[0m \u001b[0;31m#                             memory\u003d\u0027data/leaf_cache/\u0027,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m     86\u001b[0m                             \u001b[0mcluster_selection_method\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0;34m\u0027leaf\u0027\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m---\u003e 87\u001b[0;31m                             gen_min_span_tree\u003dTrue).fit(df_HDBSCAN)\n\u001b[0m\n\u001b[0;32m/usr/local/lib64/python3.7/site-packages/hdbscan/hdbscan_.py\u001b[0m in \u001b[0;36mfit\u001b[0;34m(self, X, y)\u001b[0m\n\u001b[1;32m    917\u001b[0m          \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_condensed_tree\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    918\u001b[0m          \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_single_linkage_tree\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 919\u001b[0;31m          self._min_spanning_tree) \u003d hdbscan(X, **kwargs)\n\u001b[0m\u001b[1;32m    920\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    921\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mprediction_data\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib64/python3.7/site-packages/hdbscan/hdbscan_.py\u001b[0m in \u001b[0;36mhdbscan\u001b[0;34m(X, min_cluster_size, min_samples, alpha, cluster_selection_epsilon, metric, p, leaf_size, algorithm, memory, approx_min_span_tree, gen_min_span_tree, core_dist_n_jobs, cluster_selection_method, allow_single_cluster, match_reference_implementation, **kwargs)\u001b[0m\n\u001b[1;32m    613\u001b[0m                                              \u001b[0mapprox_min_span_tree\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    614\u001b[0m                                              \u001b[0mgen_min_span_tree\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 615\u001b[0;31m                                              core_dist_n_jobs, **kwargs)\n\u001b[0m\u001b[1;32m    616\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m  \u001b[0;31m# Metric is a valid BallTree metric\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    617\u001b[0m             \u001b[0;31m# TO DO: Need heuristic to decide when to go to boruvka;\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/site-packages/joblib/memory.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, *args, **kwargs)\u001b[0m\n\u001b[1;32m    350\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    351\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0m__call__\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 352\u001b[0;31m         \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mfunc\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m*\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    353\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    354\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0mcall_and_shelve\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m*\u001b[0m\u001b[0margs\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m**\u001b[0m\u001b[0mkwargs\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib64/python3.7/site-packages/hdbscan/hdbscan_.py\u001b[0m in \u001b[0;36m_hdbscan_boruvka_kdtree\u001b[0;34m(X, min_samples, alpha, metric, p, leaf_size, approx_min_span_tree, gen_min_span_tree, core_dist_n_jobs, **kwargs)\u001b[0m\n\u001b[1;32m    276\u001b[0m                                  \u001b[0mleaf_size\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mleaf_size\u001b[0m \u001b[0;34m//\u001b[0m \u001b[0;36m3\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    277\u001b[0m                                  \u001b[0mapprox_min_span_tree\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mapprox_min_span_tree\u001b[0m\u001b[0;34m,\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 278\u001b[0;31m                                  n_jobs\u003dcore_dist_n_jobs, **kwargs)\n\u001b[0m\u001b[1;32m    279\u001b[0m     \u001b[0mmin_spanning_tree\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0malg\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mspanning_tree\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    280\u001b[0m     \u001b[0;31m# Sort edges of the min_spanning_tree by weight\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32mhdbscan/_hdbscan_boruvka.pyx\u001b[0m in \u001b[0;36mhdbscan._hdbscan_boruvka.KDTreeBoruvkaAlgorithm.__init__\u001b[0;34m()\u001b[0m\n\n\u001b[0;32mhdbscan/_hdbscan_boruvka.pyx\u001b[0m in \u001b[0;36mhdbscan._hdbscan_boruvka.KDTreeBoruvkaAlgorithm._compute_bounds\u001b[0;34m()\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/site-packages/joblib/parallel.py\u001b[0m in \u001b[0;36m__call__\u001b[0;34m(self, iterable)\u001b[0m\n\u001b[1;32m   1059\u001b[0m \u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1060\u001b[0m             \u001b[0;32mwith\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_backend\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mretrieval_context\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m-\u003e 1061\u001b[0;31m                 \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mretrieve\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m   1062\u001b[0m             \u001b[0;31m# Make sure that we get a last message telling us we are done\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m   1063\u001b[0m             \u001b[0melapsed_time\u001b[0m \u001b[0;34m\u003d\u001b[0m \u001b[0mtime\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtime\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m \u001b[0;34m-\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_start_time\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/site-packages/joblib/parallel.py\u001b[0m in \u001b[0;36mretrieve\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    938\u001b[0m             \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    939\u001b[0m                 \u001b[0;32mif\u001b[0m \u001b[0mgetattr\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_backend\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;34m\u0027supports_timeout\u0027\u001b[0m\u001b[0;34m,\u001b[0m \u001b[0;32mFalse\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 940\u001b[0;31m                     \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_output\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mextend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mjob\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtimeout\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mtimeout\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    941\u001b[0m                 \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    942\u001b[0m                     \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_output\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mextend\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mjob\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mget\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/local/lib/python3.7/site-packages/joblib/_parallel_backends.py\u001b[0m in \u001b[0;36mwrap_future_result\u001b[0;34m(future, timeout)\u001b[0m\n\u001b[1;32m    540\u001b[0m         AsyncResults.get from multiprocessing.\"\"\"\n\u001b[1;32m    541\u001b[0m         \u001b[0;32mtry\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 542\u001b[0;31m             \u001b[0;32mreturn\u001b[0m \u001b[0mfuture\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0mresult\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mtimeout\u001b[0m\u001b[0;34m\u003d\u001b[0m\u001b[0mtimeout\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    543\u001b[0m         \u001b[0;32mexcept\u001b[0m \u001b[0mCfTimeoutError\u001b[0m \u001b[0;32mas\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    544\u001b[0m             \u001b[0;32mraise\u001b[0m \u001b[0mTimeoutError\u001b[0m \u001b[0;32mfrom\u001b[0m \u001b[0me\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib64/python3.7/concurrent/futures/_base.py\u001b[0m in \u001b[0;36mresult\u001b[0;34m(self, timeout)\u001b[0m\n\u001b[1;32m    433\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mCancelledError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    434\u001b[0m             \u001b[0;32melif\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_state\u001b[0m \u001b[0;34m\u003d\u003d\u001b[0m \u001b[0mFINISHED\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 435\u001b[0;31m                 \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m__get_result\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    436\u001b[0m             \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    437\u001b[0m                 \u001b[0;32mraise\u001b[0m \u001b[0mTimeoutError\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;32m/usr/lib64/python3.7/concurrent/futures/_base.py\u001b[0m in \u001b[0;36m__get_result\u001b[0;34m(self)\u001b[0m\n\u001b[1;32m    382\u001b[0m     \u001b[0;32mdef\u001b[0m \u001b[0m__get_result\u001b[0m\u001b[0;34m(\u001b[0m\u001b[0mself\u001b[0m\u001b[0;34m)\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    383\u001b[0m         \u001b[0;32mif\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_exception\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0;32m--\u003e 384\u001b[0;31m             \u001b[0;32mraise\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_exception\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[0m\u001b[1;32m    385\u001b[0m         \u001b[0;32melse\u001b[0m\u001b[0;34m:\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\u001b[1;32m    386\u001b[0m             \u001b[0;32mreturn\u001b[0m \u001b[0mself\u001b[0m\u001b[0;34m.\u001b[0m\u001b[0m_result\u001b[0m\u001b[0;34m\u001b[0m\u001b[0;34m\u001b[0m\u001b[0m\n\n\u001b[0;31mMemoryError\u001b[0m: Unable to allocate 1.34 GiB for an array with shape (59826302,) and data type [(\u0027val\u0027, \u0027\u003cf8\u0027), (\u0027i1\u0027, \u0027\u003ci8\u0027), (\u0027i2\u0027, \u0027\u003ci8\u0027)]"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682205_1187540317",
+      "id": "20200605-165000_1292852380",
+      "dateCreated": "2020-10-09 18:21:22.205",
+      "dateStarted": "2020-10-12 21:16:38.740",
+      "dateFinished": "2020-10-12 21:37:29.016",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n# collect results from HDBSCAN\ndata, persistence \u003d clustering_info(clusterer, True, data)\nprint(data.columns)\n#data.to_csv(\"data/DR2_with_groups_leaf.csv\", index\u003dNone)\n\n# Collect prediction data from HDBSCAN\n\n# wdcols\u003d[\u0027l\u0027,\u0027b\u0027,\u0027Plx\u0027, \u0027pmRA\u0027, \u0027pmDE\u0027]    # Naming WD columns\n# print(WDs.columns)\n# WDs\u003dclustering_prediction(clusterer, WDs, wdcols,  True) \n# WDs.to_csv(\"data/WDs_with_groups_leaf.csv\", index\u003dNone)\n# print(\u0027WDs check complete\u0027)",
+      "user": "gaiauser",
+      "dateUpdated": "2020-10-13 12:43:39.966",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "ERROR",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "java.lang.IllegalStateException: Spark context stopped while waiting for backend\n\tat org.apache.spark.scheduler.TaskSchedulerImpl.waitBackendReady(TaskSchedulerImpl.scala:834)\n\tat org.apache.spark.scheduler.TaskSchedulerImpl.postStartHook(TaskSchedulerImpl.scala:201)\n\tat org.apache.spark.SparkContext.\u003cinit\u003e(SparkContext.scala:560)\n\tat org.apache.spark.SparkContext$.getOrCreate(SparkContext.scala:2520)\n\tat org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:930)\n\tat org.apache.spark.sql.SparkSession$Builder$$anonfun$7.apply(SparkSession.scala:921)\n\tat scala.Option.getOrElse(Option.scala:121)\n\tat org.apache.spark.sql.SparkSession$Builder.getOrCreate(SparkSession.scala:921)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n\tat sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n\tat sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n\tat java.lang.reflect.Method.invoke(Method.java:498)\n\tat org.apache.zeppelin.spark.BaseSparkScalaInterpreter.spark2CreateContext(BaseSparkScalaInterpreter.scala:263)\n\tat org.apache.zeppelin.spark.BaseSparkScalaInterpreter.createSparkContext(BaseSparkScalaInterpreter.scala:182)\n\tat org.apache.zeppelin.spark.SparkScala211Interpreter.open(SparkScala211Interpreter.scala:90)\n\tat org.apache.zeppelin.spark.NewSparkInterpreter.open(NewSparkInterpreter.java:102)\n\tat org.apache.zeppelin.spark.SparkInterpreter.open(SparkInterpreter.java:62)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)\n\tat org.apache.zeppelin.spark.PySparkInterpreter.getSparkInterpreter(PySparkInterpreter.java:664)\n\tat org.apache.zeppelin.spark.PySparkInterpreter.createGatewayServerAndStartScript(PySparkInterpreter.java:260)\n\tat org.apache.zeppelin.spark.PySparkInterpreter.open(PySparkInterpreter.java:194)\n\tat org.apache.zeppelin.interpreter.LazyOpenInterpreter.open(LazyOpenInterpreter.java:69)\n\tat org.apache.zeppelin.interpreter.remote.RemoteInterpreterServer$InterpretJob.jobRun(RemoteInterpreterServer.java:616)\n\tat org.apache.zeppelin.scheduler.Job.run(Job.java:188)\n\tat org.apache.zeppelin.scheduler.FIFOScheduler$1.run(FIFOScheduler.java:140)\n\tat java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511)\n\tat java.util.concurrent.FutureTask.run(FutureTask.java:266)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.access$201(ScheduledThreadPoolExecutor.java:180)\n\tat java.util.concurrent.ScheduledThreadPoolExecutor$ScheduledFutureTask.run(ScheduledThreadPoolExecutor.java:293)\n\tat java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1149)\n\tat java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:624)\n\tat java.lang.Thread.run(Thread.java:748)\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682205_1219717182",
+      "id": "20200709-153048_444614899",
+      "dateCreated": "2020-10-09 18:21:22.205",
+      "dateStarted": "2020-10-13 12:43:40.053",
+      "dateFinished": "2020-10-13 12:44:21.507",
+      "status": "ERROR",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-10-09 18:21:22.205",
+      "config": {
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/python",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1602267682205_1354071535",
+      "id": "20200821-082350_10618326",
+      "dateCreated": "2020-10-09 18:21:22.205",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Kounkel \u0026 Covey - UDF",
+  "id": "2FKUDTN5G",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark::2FKUDTN5G": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
