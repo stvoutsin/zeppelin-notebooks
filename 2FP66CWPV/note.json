@@ -1,0 +1,102 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark.pyspark\nimport astroquery",
+      "user": "admin",
+      "dateUpdated": "2020-10-26 16:42:30.451",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "python",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/python"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1602841481944_493953003",
+      "id": "20201016-094441_1811323952",
+      "dateCreated": "2020-10-16 09:44:41.944",
+      "dateStarted": "2020-10-26 16:42:30.473",
+      "dateFinished": "2020-10-26 16:46:33.808",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark.pyspark\n\n# get the 2MASS photometry for the set of examples of good astrometric solutions (uses GACS call-out for DPAC crossmatch at GDR2)\n#\n# TODO: replace this with an internal GEDR3/2MASS match (using AXS) when deployed.\n\nimport warnings\nwarnings.filterwarnings(\"ignore\")\nfrom astroquery.utils.tap.core import TapPlus\ngaia \u003d TapPlus(url\u003d\"https://gea.esac.esa.int/tap-server/tap\")\n\nadql_query \u003d \"SELECT TOP 10 * FROM gaiadr2.gaia_source AS g\"\n            \n\n# execute the query\njob \u003d gaia.launch_job_async(adql_query)\nresults \u003d job.get_results()\nlen(results)",
+      "user": "admin",
+      "dateUpdated": "2020-10-16 09:52:47.705",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Created TAP+ (v1.2.1) - Connection:\n\tHost: gea.esac.esa.int\n\tUse HTTPS: True\n\tPort: 443\n\tSSL Port: 443\nINFO: Query finished. [astroquery.utils.tap.core]\n10"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1602841873630_1182330881",
+      "id": "20201016-095113_627817159",
+      "dateCreated": "2020-10-16 09:51:13.631",
+      "dateStarted": "2020-10-16 09:52:47.716",
+      "dateFinished": "2020-10-16 09:52:48.557",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "user": "gaiauser",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1602841487232_1111922050",
+      "id": "20201016-094447_410410446",
+      "dateCreated": "2020-10-16 09:44:47.233",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "Untitled Note 2",
+  "id": "2FP66CWPV",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
