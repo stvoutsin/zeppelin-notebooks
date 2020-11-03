@@ -55,11 +55,22 @@
         "params": {},
         "forms": {}
       },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "Test\n"
+          }
+        ]
+      },
       "apps": [],
       "jobName": "paragraph_1604432018339_-1706256245",
       "id": "20201103-193338_1554083270",
       "dateCreated": "2020-11-03 19:33:38.339",
-      "status": "READY",
+      "dateStarted": "2020-11-03 19:33:53.306",
+      "dateFinished": "2020-11-03 19:36:13.102",
+      "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
