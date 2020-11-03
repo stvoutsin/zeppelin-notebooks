@@ -35,6 +35,34 @@
       "progressUpdateIntervalMs": 500
     },
     {
+      "text": "%spark.pyspark\nprint(\"Test\")",
+      "user": "admin",
+      "dateUpdated": "2020-11-03 19:33:53.264",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1604432018339_-1706256245",
+      "id": "20201103-193338_1554083270",
+      "dateCreated": "2020-11-03 19:33:38.339",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    },
+    {
       "text": "%spark.pyspark\n\n# a conservative selection of everything that COULD be within 100pc, including things with measured \n# distances putting them outside the 100pc horizon when their true distances are within, and also including \n# loads of spurious chaff with the wheat of course:\nall_sources_df \u003d spark.sql(\"SELECT source_id FROM gaia_source WHERE parallax \u003e +8.0\")\nall_sources_df.count()\n# (cf. GEDR3: 1,211,740 sources) ",
       "user": "admin",
       "dateUpdated": "2020-10-13 14:42:57.108",
