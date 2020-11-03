@@ -1,9 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%spark.pyspark\n# (Q: why am I having to prefix interpreter bindings with \"spark.\" all of a sudden ?!)\n\n# define the data frame source on the given column selection only (we don\u0027t want to read the whole thing ... presumably?)\ndf \u003d sqlContext.read.parquet(\"/data/gaia/*.parquet\").select(\"source_id\")\n\n# register as an sql context queryable object\nsqlContext.registerDataFrameAsTable(df, \"gaia_source_ids\")\n",
+      "text": "%spark.pyspark\n# (Q: Why am I having to prefix interpreter bindings with \"spark.\" all of a sudden ?!)\n\n# define the data frame source on the given column selection only (we don\u0027t want to read the whole thing ... presumably?)\ndf \u003d sqlContext.read.parquet(\"/data/gaia/*.parquet\").select(\"source_id\")\n\n# register as an sql context queryable object\nsqlContext.registerDataFrameAsTable(df, \"gaia_source_ids\")\n",
       "user": "admin",
-      "dateUpdated": "2020-10-25 09:44:20.903",
+      "dateUpdated": "2020-11-03 20:37:36.163",
       "config": {
         "editorSetting": {
           "language": "python",
