@@ -72,27 +72,15 @@
       "dateFinished": "2020-10-16 09:52:48.557",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
-    },
-    {
-      "user": "gaiauser",
-      "config": {},
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "apps": [],
-      "jobName": "paragraph_1602841487232_1111922050",
-      "id": "20201016-094447_410410446",
-      "dateCreated": "2020-10-16 09:44:47.233",
-      "status": "READY",
-      "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "Untitled Note 2",
+  "name": "Astroquery TAP query",
   "id": "2FP66CWPV",
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
+    "md:shared_process": [],
+    "python:shared_process": [],
     "spark:shared_process": []
   },
   "config": {
